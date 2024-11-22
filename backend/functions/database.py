@@ -14,7 +14,7 @@ def get_recent_messages():
     # Initialize messages
     messages = []
 
-    # Add a random element
+    # Add a random element, not sure if I will end up using this but it's cool to know how it's done
     x = random.uniform(0, 1)
     if x < 0.5:
         learn_instruction["content"] += " Your response will include some dry humor."
@@ -41,3 +41,25 @@ def get_recent_messages():
         pass
 
     return messages
+
+
+# Store Messages
+def store_messages(request_message, response_message):
+    file_name = "stored_data.json"
+    # Get recent messages
+    messages = get_recent_messages()[1:]  # we don't want the first message that is sent which is the first prompt we give
+    # Add messages to data
+    user_message = {"role": "user", "content": request_message}
+    assistant_message = {"role": "assistant", "content": response_message}
+    messages.append(user_message)
+    messages.append(assistant_message)
+
+    # Save the updated messages
+    with open(file_name, "w") as f:
+        json.dump(messages, f)
+
+
+# Reset Messages
+def reset_messages():
+    # Overwrite current file with nothing
+    open("stored_data.json", "w")

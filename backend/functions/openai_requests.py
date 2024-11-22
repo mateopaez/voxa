@@ -34,8 +34,8 @@ def get_chat_response(message_input):
             model="gpt-4o-mini",
             messages=messages
         )
-        print(response)
-        message_text = response["choices"][0]["message"]["content"]
+        # print(response)
+        message_text = response.choices[0].message.content
         return message_text
     except Exception as e:
         print(e)
