@@ -14,15 +14,15 @@ def get_recent_messages():
     # Initialize messages
     messages = []
 
-    # Add a random element, not sure if I will end up using this but it's cool to know how it's done
-    x = random.uniform(0, 1)
-    if x < 0.5:
-        learn_instruction["content"] += " Your response will include some dry humor."
-    else:
-        learn_instruction["content"] += "Your response will include a rather challenging question square roots."
+    # Add a random element, not sure if I will end up using this but it's cool to know how it's done:
+    # x = random.uniform(0, 1)
+    # if x < 0.5:
+    #     learn_instruction["content"] += " Your response will include some dry humor."
+    # else:
+    #     learn_instruction["content"] += "Your response will include a rather challenging question square roots."
 
-    # Append instruction to message
-    messages.append(learn_instruction)
+    # Append instruction to message (used if random element is used ^)
+    #messages.append(learn_instruction)
 
     # Get last messages
     try:

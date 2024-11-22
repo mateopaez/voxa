@@ -8,6 +8,7 @@ from decouple import config
 import openai
 from functions.database import store_messages, reset_messages
 from functions.openai_requests import convert_audio_to_text, get_chat_response
+from functions.text_to_speech import convert_text_to_speech
 
 # Initiate App
 app = FastAPI()
@@ -58,18 +59,23 @@ async def get_audio():
     # Get ChatGPT response
     chat_response = get_chat_response(message_decoded)
 
+    # Guard: Ensure chat responded
+    if not chat_response:
+        return HTTPException(status_code=400, detail="Failed to get chat response")
+    
     # Store messages
     store_messages(message_decoded, chat_response)
 
-    print(chat_response)
+    # Convert chat response to audio
+    audio_output = convert_text_to_speech(chat_response)
 
-    return "Done"
+    # Guard: Ensure textconverted
+    if not audio_output:
+        return HTTPException(status_code=400, detail="Failed to get Eleven Labs audio response")
+    
+    # Create a generator that yields chunks of data
+    def iterfile():
+        yield audio_output
 
-
-
-# # Post bot response
-# # Note: Not playing in browser when using post request
-# @app.post("/post-audio/")
-# async def post_audio(file: UploadFile = File(...)):
-#     print("hello")
-
+    # Return audio file
+    return StreamingResponse(iterfile(), media_type="audio/mpeg")
