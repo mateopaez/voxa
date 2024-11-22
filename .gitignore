@@ -8,6 +8,7 @@ frontend/pnpm-debug.log*
 frontend/lerna-debug.log*
 
 backend/__pycache__
+backend/functions/__pycache__
 backend/venv/
 backend/.env
 frontend/node_modules
