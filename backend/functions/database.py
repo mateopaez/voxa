@@ -47,7 +47,7 @@ def get_recent_messages():
 def store_messages(request_message, response_message):
     file_name = "stored_data.json"
     # Get recent messages
-    messages = get_recent_messages()[1:]  # we don't want the first message that is sent which is the first prompt we give
+    messages = get_recent_messages()[1:]  # we don't want the first message that is sent which is the learning instruction prompt
     # Add messages to data
     user_message = {"role": "user", "content": request_message}
     assistant_message = {"role": "assistant", "content": response_message}
