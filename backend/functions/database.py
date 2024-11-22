@@ -21,8 +21,8 @@ def get_recent_messages():
     # else:
     #     learn_instruction["content"] += "Your response will include a rather challenging question square roots."
 
-    # Append instruction to message (used if random element is used ^)
-    #messages.append(learn_instruction)
+    # Append instruction to message
+    messages.append(learn_instruction)
 
     # Get last messages
     try:
