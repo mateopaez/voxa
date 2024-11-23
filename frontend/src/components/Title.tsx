@@ -29,10 +29,10 @@ function Title({ setMessages }: Props) {
     return (
 
         <div className="flex justify-between items-center w-full p-4 bg-gray-900 text-white font-bold shadow">
-            <div className="italic">ChatBot</div>
+            <div className="italic">Voxa</div>
             <button 
                 onClick={resetConversation}
-                className={"transition-all duration-300 text-blue-300 hover:text-pink-500 " + (isResetting && "animate-pulse")}>
+                className={"transition-all duration-300 text-custom3 hover:text-custom1 " + (isResetting && "animate-pulse")}>
                 <svg 
                     xmlns="http://www.w3.org/2000/svg" 
                     fill="none" 
