@@ -16,11 +16,11 @@ app = FastAPI()
 
 # CORS - Origins
 origins = [
-    "https://localhost:5173",
-    "https://localhost:5174",
-    "https://localhost:4173",
-    "https://localhost:4174",
-    "https://localhost:3000",
+    "http://localhost:5173",
+    "http://localhost:5174",
+    "http://localhost:4173",
+    "http://localhost:4174",
+    "http://localhost:3000",
 ]
 
 # CORS - Middlware
@@ -44,7 +44,7 @@ async def reset_conversation():
     return {"message": "conversation reset"}
 
 # Get audio
-@app.get("/post-audio/")
+@app.post("/post-audio")
 async def post_audio(file: UploadFile = File(...)):
 
     # Get saved audio

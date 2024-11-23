@@ -1,17 +1,57 @@
 import { useState } from 'react'
 import Title from "./Title";
 import RecordMessage from './RecordMessage';
+import axios from "axios";
 
 function Controller() {
     const [isLoading, setIsLoading] = useState(false);
     const [messages, setMessages] = useState<any[]>([]);
 
-    // Placeholder for later
-    const createBlobUrl = (data: any) => {};
+    const createBlobUrl = (data: any) => {
+        const blob = new Blob([data], { type: "audio/mpeg" });
+        const url = window.URL.createObjectURL(blob);
+        return url;
+    };
 
-    // Placeholder for later
-    const handleStop = async () => {
-        alert("hello")
+    const handleStop = async (blobUrl: string) => {
+        setIsLoading(true);
+
+        // Append recorded message to messages
+        const myMessage = { sender: "me", blobUrl };
+        const messagesArr = [...messages, myMessage];
+
+        // Convert blob url to blob object
+        fetch(blobUrl)
+        .then((response) => response.blob())
+        .then(async (blob) => {
+            // Construct audio to send file
+            const formData = new FormData();
+            formData.append("file", blob, "myFile.wav");
+
+            // Send form data to API endpoint
+            await axios
+            .post("http://localhost:8000/post-audio", formData, {
+                responseType: "arraybuffer",  
+            })
+            .then((response: any) => {
+                const blob = response.data;
+                const audio = new Audio();
+                audio.src = createBlobUrl(blob);
+
+                // Append to audio
+                const voxaMessage = { sender: "voxa", blobUrl: audio.src };
+                messagesArr.push(voxaMessage);
+                setMessages(messagesArr);
+
+                // Play Audio
+                setIsLoading(false);
+                audio.play();
+            })
+            .catch((err) => {
+                console.error(err.message);
+                setIsLoading(false);
+            });
+        });
     };
 
 
@@ -19,7 +59,7 @@ function Controller() {
         <div className="relative min-h-screen bg-gradient-to-br from-custom1 via-custom2 to-custom3 flex justify-center items-center">
             {/* Glassy bg overlay */}
             <div className="absolute inset-0 backdrop-blur-lg bg-black bg-opacity-20"></div>
-            
+
             {/* Main container */}
             <div className="
                 relative 
@@ -35,8 +75,49 @@ function Controller() {
                 overflow-hidden 
                 flex 
                 flex-col">
+
+                {/* Title */}
                 <Title setMessages={setMessages}/>
                 <div className="flex flex-col justify-between h-full overflow-y-scroll pb-96">
+
+                    {/* Conversation */}
+                    <div className="mt-5 px-5">
+                        {messages.map((audio, index) => {
+                            return ( <div key={index + audio.sender} 
+                                className={"flex flex-col " + 
+                                (audio.sender == "voxa" && "flex items-end")
+                                }
+                            >
+                                {/* Sender Name */}
+                                <div className="mt-4">
+                                    <p className={
+                                        audio.sender == "voxa" 
+                                        ? "text-right mr-2 italic text-custom3" 
+                                        : "ml-2 italic text-custom1"}
+                                    >
+                                        {audio.sender}
+                                    </p>
+
+                                    {/* Audio Message */}
+                                    <audio src={audio.blobUrl} className="appearance-none" controls />
+                                </div>
+                            </div>
+                            );
+                        })}
+
+                        {messages.length == 0 && !isLoading && (
+                            <div className="text-center font-light italic mt-10">
+                                Send Voxa a voice message...
+                            </div>
+                        )}
+
+                        {isLoading && (
+                            <div className="text-center font-light italic mt-10 animate-pulse">
+                                Voxa is thinking...
+                            </div>
+                        )}
+                    </div>
+
                     {/* Recorder */}
                     <div className="absolute bottom-0 left-0 w-full lg:w-full lg:rounded-b-lg py-6 border-t text-center bg-gradient-to-r from-custom1 via-custom2 to-custom3">
                         <div className="flex justify-center items-center w-full">
