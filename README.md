@@ -1,5 +1,5 @@
 # Voxa
-<p align="center" font-size: 30px> An AI Assistant using fully voice-to-voice messaging! </p>
+<p align="center" font-size: 30px> A voice-activated AI assistant designed to provide seamless, fully voice-to-voice interaction. </p>
 <p align="center">
     <img src="frontend/src/assets/VoxaPreview.png" width="350" height="550" />
 </p>
