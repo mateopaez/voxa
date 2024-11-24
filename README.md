@@ -1,6 +1,6 @@
 # Voxa
 
-![Voxa](frontend/src/assets/voxaPreview.png)
+![Voxa](frontend/src/assets/VoxaPreview.png)
 
 An AI assistant using fully voice-to-voice messages!
 
