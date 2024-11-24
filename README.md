@@ -1,10 +1,9 @@
 # Voxa
-
-<img src="frontend/src/assets/VoxaPreview.png" width="350" height="550" />
-
-An AI assistant using fully voice-to-voice messages!
-
-Fun fact: Vox means voice in Latin!
+<p align="center" font-size: 30px> An AI Assistant using fully voice-to-voice messaging! </p>
+<p align="center">
+    <img src="frontend/src/assets/VoxaPreview.png" width="350" height="550" />
+</p>
+<p align="center"> Fun fact: Vox means voice in Latin </p>
 
 ## Tech Stack
 
