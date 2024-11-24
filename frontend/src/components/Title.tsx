@@ -12,7 +12,7 @@ function Title({ setMessages }: Props) {
     const resetConversation = async () => {
         setIsResetting(true);
 
-        await axios.get("http://localhost:8000/reset").then((response) => {
+        await axios.get("https://voxa.up.railway.app/reset").then((response) => {
             if (response.status == 200) {
                 setMessages([]);
             } else {
