@@ -30,7 +30,7 @@ function Controller() {
 
             // Send form data to API endpoint
             await axios
-            .post("http://localhost:8000/post-audio", formData, {
+            .post("https://voxa.up.railway.app/post-audio", formData, {
                 responseType: "arraybuffer",  
             })
             .then((response: any) => {
