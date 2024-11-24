@@ -10,7 +10,7 @@
 * [typescript](https://www.typescriptlang.org)
 * [react](https://reactjs.org)
 * [react-media-recorder](https://www.npmjs.com/package/react-media-recorder)
-* [Tailwind](https://tailwindcss.com)
+* [tailwind](https://tailwindcss.com)
 * [vite](https://vite.dev)
 * [node.js](https://nodejs.org/en)
 * [fastAPI](https://fastapi.tiangolo.com)
