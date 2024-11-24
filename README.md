@@ -1,6 +1,6 @@
 # Voxa
 
-![Voxa](frontend/src/assets/VoxaPreview.png)
+<img src="frontend/src/assets/VoxaPreview.png" width="350" height="550" />
 
 An AI assistant using fully voice-to-voice messages!
 
