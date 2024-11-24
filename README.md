@@ -1,7 +1,9 @@
 # Voxa
 <p align="center" font-size: 30px> A voice-activated AI assistant designed to provide seamless, fully voice-to-voice interaction. </p>
 <p align="center">
-    <img src="frontend/src/assets/VoxaPreview.png" width="350" height="550" />
+    <a href="https://voxa-mp.vercel.app">
+        <img src="frontend/src/assets/VoxaPreview.png" width="350" height="550" />
+    </a>
 </p>
 <p align="center"> Fun fact: Vox means voice in Latin </p>
 

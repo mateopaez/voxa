@@ -45,7 +45,7 @@ function Controller() {
 
                 // Play Audio
                 setIsLoading(false);
-                audio.play();
+                // audio.play();
             })
             .catch((err) => {
                 console.error(err.message);
