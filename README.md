@@ -8,7 +8,7 @@
 <p align="center"> Fun fact: Vox means voice in Latin </p>
 
 ## ⚠️ Important Note
-Voxa makes use of OpenAI's Whisper and GPT APIs, as well as Elevenlabs.io's text-to-speech service, all of which incur usage costs. As this app is primarily deployed for easy access during job interviews and to showcase my work, I kindly ask users to minimize usage where possible. Please only interact with the app as necessary, and I appreciate your understanding as I maintain and showcase the project. Thank you for your support! You may access the site here [voxa-mp.vercel.app](https://voxa-mp.vercel.app/)
+Voxa makes use of OpenAI's Whisper and GPT APIs, as well as Elevenlabs.io's text-to-speech service, all of which incur usage costs. As this app is primarily deployed for easy access during job interviews and to showcase my work, I kindly ask users to minimize usage where possible. Please only interact with the app as necessary, and I appreciate your understanding as I maintain and showcase the project. You may access the site here [voxa-mp.vercel.app](https://voxa-mp.vercel.app/)
 
 ## Tech Stack
 
