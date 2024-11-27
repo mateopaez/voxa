@@ -77,9 +77,7 @@ function Controller() {
                 flex-col">
 
                 {/* Title */}
-                <div className="sm:sticky">
-                    <Title setMessages={setMessages}/>
-                </div>
+                <Title setMessages={setMessages}/>
                 <div className="flex flex-col justify-between h-full overflow-y-scroll">
 
                     {/* Conversation */}
@@ -121,7 +119,7 @@ function Controller() {
                     </div>
 
                     {/* Recorder */}
-                    <div className="absolute sm:sticky bottom-0 left-0 w-full lg:w-full lg:rounded-b-lg py-6 border-t text-center bg-gradient-to-r from-custom1 via-custom2 to-custom3">
+                    <div className="absolute bottom-0 left-0 w-full lg:w-full lg:rounded-b-lg py-6 border-t text-center bg-gradient-to-r from-custom1 via-custom2 to-custom3">
                         <div className="flex justify-center items-center w-full">
                             <RecordMessage handleStop={handleStop} />
                         </div>
