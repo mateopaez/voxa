@@ -1,8 +1,13 @@
 import { useState } from 'react';
 import axios from "axios";
 
+interface Message {
+    sender: string;
+    blobUrl: string;
+}
+
 type Props = {
-    setMessages: any;
+    setMessages: (messages: Message[]) => void;
 };
 
 function Title({ setMessages }: Props) {

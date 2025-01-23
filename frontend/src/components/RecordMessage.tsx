@@ -3,27 +3,31 @@ import RecordIcon from "./RecordIcon";
 import RecordRTC from "recordrtc";
 
 type Props = {
-  handleStop: any;
+  handleStop: (url: string) => void;
 };
 
 function RecordMessage({ handleStop }: Props) {
   const [isRecording, setIsRecording] = useState(false);
-  const [recorder, setRecorder] = useState<any>(null);
+  const [recorder, setRecorder] = useState<RecordRTC | null>(null);
   const streamRef = useRef<MediaStream | null>(null);
 
   const startRecording = async () => {
-    // Get user media
-    streamRef.current = await navigator.mediaDevices.getUserMedia({ audio: true });
-    
-    // Create the recorder instance using RecordRTC
-    const newRecorder = new RecordRTC(streamRef.current, {
-      type: "audio",
-      mimeType: "audio/wav", // Choose the format that works across browsers
-      recorderType: RecordRTC.StereoAudioRecorder,
-    });
+    try {
+      // Get user media
+      streamRef.current = await navigator.mediaDevices.getUserMedia({ audio: true });
+      
+      // Create the recorder instance using RecordRTC
+      const newRecorder = new RecordRTC(streamRef.current, {
+        type: "audio",
+        mimeType: "audio/wav", // Choose the format that works across browsers
+        recorderType: RecordRTC.StereoAudioRecorder,
+      });
 
-    newRecorder.startRecording();
-    setRecorder(newRecorder);
+      newRecorder.startRecording();
+      setRecorder(newRecorder);
+    } catch(err) {
+      console.error("Error starting recording:", err);
+    }
   };
 
   const stopRecording = () => {

@@ -3,11 +3,16 @@ import Title from "./Title";
 import RecordMessage from './RecordMessage';
 import axios from "axios";
 
+interface Message {
+    sender: string;
+    blobUrl: string;
+}
+
 function Controller() {
     const [isLoading, setIsLoading] = useState(false);
-    const [messages, setMessages] = useState<any[]>([]);
+    const [messages, setMessages] = useState<Message[]>([]);
 
-    const createBlobUrl = (data: any) => {
+    const createBlobUrl = (data: ArrayBuffer | Blob): string => {
         const blob = new Blob([data], { type: "audio/mpeg" });
         const url = window.URL.createObjectURL(blob);
         return url;
@@ -17,7 +22,7 @@ function Controller() {
         setIsLoading(true);
 
         // Append recorded message to messages
-        const myMessage = { sender: "me", blobUrl };
+        const myMessage: Message = { sender: "me", blobUrl };
         const messagesArr = [...messages, myMessage];
 
         // Convert blob url to blob object
@@ -39,13 +44,12 @@ function Controller() {
                 audio.src = createBlobUrl(blob);
 
                 // Append to audio
-                const voxaMessage = { sender: "voxa", blobUrl: audio.src };
+                const voxaMessage: Message = { sender: "voxa", blobUrl: audio.src };
                 messagesArr.push(voxaMessage);
                 setMessages(messagesArr);
 
                 // Play Audio
                 setIsLoading(false);
-                // audio.play();
             })
             .catch((err) => {
                 console.error(err.message);
