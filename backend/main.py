@@ -48,7 +48,7 @@ async def reset_conversation():
 @app.post("/post-audio")
 async def post_audio(file: UploadFile = File(...)):
 
-    # Get saved audio
+    # Get saved audio - offline version
     #audio_input = open("voice.m4a", "rb")
     
     #Save file from Frontend
