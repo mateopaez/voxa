@@ -78,7 +78,8 @@ async def post_audio(file: UploadFile = File(...)):
 
     # Guard: Ensure textconverted
     if not audio_output:
-        return HTTPException(status_code=400, detail="Failed to get Eleven Labs audio response")
+        print("ERROR: convert_text_to_speech returned None - check logs above for details")
+        raise HTTPException(status_code=500, detail="Failed to get Eleven Labs audio response. Check server logs for details.")
     
     # Create a generator that yields chunks of data
     def iterfile():

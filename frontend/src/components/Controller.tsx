@@ -39,9 +39,22 @@ function Controller() {
                 responseType: "arraybuffer",  
             })
             .then((response: any) => {
+                // Check if response is empty or invalid
+                if (!response.data || response.data.byteLength === 0) {
+                    console.error("ERROR: Received empty audio response from server");
+                    setIsLoading(false);
+                    return;
+                }
+
                 const blob = response.data;
                 const audio = new Audio();
                 audio.src = createBlobUrl(blob);
+
+                // Handle audio loading errors
+                audio.onerror = (e) => {
+                    console.error("ERROR: Failed to load audio:", e);
+                    setIsLoading(false);
+                };
 
                 // Append to audio
                 const voxaMessage: Message = { sender: "voxa", blobUrl: audio.src };
@@ -52,7 +65,18 @@ function Controller() {
                 setIsLoading(false);
             })
             .catch((err) => {
-                console.error(err.message);
+                console.error("ERROR: API request failed:", err);
+                if (err.response) {
+                    // Server responded with error status
+                    console.error("ERROR: Server responded with status", err.response.status);
+                    console.error("ERROR: Response data:", err.response.data);
+                } else if (err.request) {
+                    // Request was made but no response received
+                    console.error("ERROR: No response received from server");
+                } else {
+                    // Error in request setup
+                    console.error("ERROR: Request setup error:", err.message);
+                }
                 setIsLoading(false);
             });
         });
