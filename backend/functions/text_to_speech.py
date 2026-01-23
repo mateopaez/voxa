@@ -20,10 +20,10 @@ def convert_text_to_speech(message):
         }
     }
     # Define voice
-    voice_zeus_epic = "jB108zg64sTcu1kCbN9L"
+    mateo_voice = "IXXam21MCFTfdWkJKYwJ"
 
     headers = {"xi-api-key": ELEVEN_LABS_API_KEY, "Content-Type": "application/json"}
-    endpoint = f"https://api.elevenlabs.io/v1/text-to-speech/{voice_zeus_epic}"
+    endpoint = f"https://api.elevenlabs.io/v1/text-to-speech/{mateo_voice}"
 
     # Send request
     try:
